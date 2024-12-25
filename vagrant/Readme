@@ -1,0 +1,13 @@
+<!-- Steps to spin up of VM-->
+
+1. Clone this repo and open it in vscode and change to vagrant directory using:
+  ## cd vagrant
+2. Run:
+   ## vagrant up
+3. SSH to VM
+   ## vagrant ssh k8s-node-1
+   ## vagrant ssh k8s-node-2
+   ## vagrant ssh k8s-node-3
+
+## Vagrant Cheat Sheet: https://gist.github.com/wpscholar/a49594e2e2b918f4d0c4
+## Vagrant Commands Details: https://developer.hashicorp.com/vagrant/docs/cli
