@@ -13,7 +13,10 @@ Vagrant.configure("2") do |config|
           vb.memory = memory
           vb.cpus = cpus
       end
+      node.vm.provision "shell", path: "k8s-tools-install.sh"
       node.vm.provision "shell", path: "change-hostname.sh", args: [node_name]
+      node.vm.provision "shell", path: "disable-swap.sh"
+      node.vm.provision "shell", path: "containerd-config.sh"
   end
 
   # Shared bridge setting
@@ -25,12 +28,12 @@ Vagrant.configure("2") do |config|
   end
 
   # Configuration for the second node (k8s-node-2).
-  # config.vm.define "k8s-node-2" do |node02|
-  #     configure_node(node02, "192.168.33.18", 2200, 2, bridge_name)
-  # end
+  config.vm.define "k8s-node-2" do |node02|
+      configure_node(node02, "k8s-node-2", "192.168.33.18", 2200, 2, bridge_name)
+  end
 
   # Configuration for the third node (k8s-node-3).
-  # config.vm.define "k8s-node-3" do |node03|
-  #     configure_node(node03, "192.168.33.19", 2300, 2, bridge_name)
-  # end
+  config.vm.define "k8s-node-3" do |node03|
+      configure_node(node03, "k8s-node-3", "192.168.33.19", 2300, 2, bridge_name)
+  end
 end
